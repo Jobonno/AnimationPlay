@@ -11,9 +11,10 @@ const icons = [
     'beats',
     'bomb',
     'alien',
-    'apple',
-    'bell'
-]
+    'cards-heart',
+    'death-star',
+    'brightness-7',
+];
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -31,14 +32,14 @@ class Tabber extends React.Component {
             transform: [{
                 rotate: this.state.animation.interpolate({
                     inputRange: [-1, 1],
-                    outputRange: ['-0.25rad', '0.25rad']
+                    outputRange: ['-0.3rad', '0.3rad']
                 })
             }]
         };
 
         const ballInterpolation = this.state.ballAnimation.interpolate({
-            inputRange: [0, 1, 2, 3, 4],
-            outputRange: [25, 85, 140, 200, 260],
+            inputRange: [0, 1],
+            outputRange: [35, 75],
         });
 
         const ballStyle = {
@@ -74,34 +75,35 @@ class Tabber extends React.Component {
     startWobble = () => {
         let lastItem = this.state.index < (icons.length - 1);
         if (lastItem) {
-            this.setState({index: ++this.state.index});
+            setTimeout(() => this.setState({index: ++this.state.index}), 50);
         } else {
-            this.setState({index: 0});
+            setTimeout(() => this.setState({index: 0}), 150);
         }
         this.setState({opacity: true})
         Animated.timing(this.state.ballAnimation, {
-            toValue: lastItem ? this.state.index : 0,
-            duration: 150,
-            easing: Easing.ease,
+            toValue: lastItem ? this.state.index + 1 : 0,
+            duration: 300,
+            easing: Easing.elastic(.7),
             useNativeDriver: true
         }).start( () =>  this.setState({opacity: false}))
 
         Animated.sequence([
+            Animated.delay(100),
             Animated.timing(this.state.animation, {
                 toValue: 1.0,
-                duration: 300,
+                duration: 150,
                 easing: Easing.linear,
                 useNativeDriver: true
             }),
             Animated.timing(this.state.animation, {
                 toValue: -1.0,
-                duration: 150,
+                duration: 250,
                 easing: Easing.linear,
                 useNativeDriver: true
             }),
             Animated.timing(this.state.animation, {
                 toValue: 0.0,
-                duration: 150,
+                duration: 250,
                 easing: Easing.linear,
                 useNativeDriver: true
             })
@@ -118,8 +120,8 @@ const styles = StyleSheet.create({
     },
     pickerBar: {
         paddingVertical: 15,
-        paddingHorizontal: 5,
-        width: 300,
+        paddingHorizontal: 25,
+        // width: 300,
         backgroundColor: 'rgb(222,222,222)',
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     },
     track: {
         borderRadius: 30,
-        width: 300,
+        // width: 300,
         top: -50
     },
     ball: {
