@@ -7,6 +7,14 @@ interface TabberState {
     animatedWobbleValue: Animated.Value
 }
 
+const icons = [
+    'beats',
+    'bomb',
+    'alien',
+    'alarm-snooze',
+    'bell'
+]
+
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 class Tabber extends React.Component {
@@ -29,11 +37,13 @@ class Tabber extends React.Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.pickerBar}>
-                    {this.state.index === 0 ? <AnimatedIcon name={'beats'} style={iconAStyles} size={30}/> : <Icon name={'beats'} color={'rgb(180,180,180)'} size={30}/>}
-                    {this.state.index === 1 ? <AnimatedIcon name={'bomb'} style={iconAStyles} size={30}/> : <Icon name={'bomb'} color={'rgb(180,180,180)'} size={30}/>}
-                    {this.state.index === 2 ? <AnimatedIcon name={'alien'} style={iconAStyles} size={30}/> : <Icon name={'alien'} color={'rgb(180,180,180)'} size={30}/>}
-                    {this.state.index === 3 ? <AnimatedIcon name={'alarm-snooze'} style={iconAStyles} size={30}/> : <Icon name={'alarm-snooze'} color={'rgb(180,180,180)'} size={30}/>}
-                    {this.state.index === 4 ? <AnimatedIcon name={'bell'} style={iconAStyles} size={30}/> : <Icon name={'bell'} color={'rgb(180,180,180)'} size={30}/>}
+                    {
+                        icons.map((item, index) => {
+                            return index === this.state.index ?
+                                <AnimatedIcon key={item} name={item} style={iconAStyles} size={30}/> :
+                                <Icon key={item} name={item} color={'rgb(180,180,180)'} size={30}/>
+                        })
+                    }
                 </View>
                 <TouchableOpacity onPress={this.startWobble}>
                     <Text>StartAnimation</Text>
@@ -43,7 +53,11 @@ class Tabber extends React.Component {
     }
 
     startWobble = () => {
-        this.setState({index: ++this.state.index});
+        if (this.state.index < (icons.length - 1)) {
+            this.setState({index: ++this.state.index});
+        } else {
+            this.setState({index: 0});
+        }
         Animated.sequence([
             Animated.timing(this.state.animation, {
                 toValue: 1.0,
