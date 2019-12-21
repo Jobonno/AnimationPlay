@@ -9,15 +9,17 @@
  */
 
 import React from 'react';
-import AnimatedTextInput from "./AnimatedTextInput";
+import AnimatedTextInput from "./Components/AnimatedTextInput";
 import {Dimensions} from "react-native";
+import Tabber from "./Components/Tabber";
 
 const {width} = Dimensions.get('window');
 
 const App = () => {
         return (
-            <AnimatedTextInput width={width - 40} height={250}/>
+            <Tabber/>
         )
+    {/*<AnimatedTextInput width={width - 40} height={250}/>*/}
 };
 
 
