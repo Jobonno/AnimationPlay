@@ -16,10 +16,12 @@ import Tabber from "./Components/Tabber";
 const {width} = Dimensions.get('window');
 
 const App = () => {
-        return (
+    return (
+        <>
             <Tabber/>
-        )
-    {/*<AnimatedTextInput width={width - 40} height={250}/>*/}
+            <AnimatedTextInput width={width - 40} height={250}/>
+        </>
+    )
 };
 
 
