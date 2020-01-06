@@ -23,7 +23,7 @@ class Tabber extends React.Component {
 
     render() {
         const iconAStyles = {
-            color: 'rgb(122,19,255)',
+            color: 'rgb(102,33,101)',
             marginHorizontal: 10,
             transform: [{
                 rotate: this.state.animation.interpolate({
@@ -47,7 +47,10 @@ class Tabber extends React.Component {
 
         return (
             <SafeAreaView style={styles.container}>
-                <View>
+                <TouchableOpacity style={styles.button} onPress={this.startWobble}>
+                    <Text style={styles.buttonText}>Move Ball</Text>
+                </TouchableOpacity>
+                <View style={{flex: 1, justifyContent: 'center'}}>
                     <View style={styles.pickerBar}>
                         {
                             icons.map((item, index) => {
@@ -62,9 +65,6 @@ class Tabber extends React.Component {
                         <Animated.View style={[styles.ball, ballStyle]}/>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={this.startWobble}>
-                    <Text style={styles.buttonText}>Move Ball</Text>
-                </TouchableOpacity>
             </SafeAreaView>
         )
     }
@@ -125,8 +125,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-around',
-        backgroundColor: 'rgb(122,19,255)'
+        backgroundColor: 'rgb(231, 43, 89)'
     },
     pickerBar: {
         paddingVertical: 15,
@@ -145,18 +144,19 @@ const styles = StyleSheet.create({
         marginTop: 5,
         width: 15,
         height: 15,
-        backgroundColor: 'rgb(122,19,255)',
+        backgroundColor: 'rgb(102,33,101)',
         borderRadius: 30
     },
     buttonText: {
       color: '#fff'
     },
     button: {
+        marginTop: 10,
         borderWidth: 1,
-        borderColor: 'rgba(188,200,255,0.5)',
         padding: 15,
         borderRadius: 10,
-        backgroundColor: 'rgba(108,133,255,0.5)'
+        borderColor: 'rgba(64, 54, 102,0.5)',
+        backgroundColor: 'rgb(64, 54, 102)',
     }
 });
 export default Tabber

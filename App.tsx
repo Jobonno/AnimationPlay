@@ -40,28 +40,28 @@ const App = () => {
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={styles.navContainer}>
             {menuState &&
             <View style={styles.navBar}>
                 <TouchableOpacity
                     onPress={() => setNavIndex(0)}
                     style={styles.navButton}>
-                    <Text>ONE</Text>
+                    <Text style={styles.navText}>ONE</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => setNavIndex(1)}
                     style={styles.navButton}>
-                    <Text>TWO</Text>
+                    <Text style={styles.navText}>TWO</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => setNavIndex(2)}
                     style={styles.navButton}>
-                    <Text>THREE</Text>
+                    <Text style={styles.navText}>THREE</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => setNavIndex(3)}
                     style={styles.navButton}>
-                    <Text>FOUR</Text>
+                    <Text style={styles.navText}>FOUR</Text>
                 </TouchableOpacity>
             </View>
             }
@@ -71,6 +71,10 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+    navContainer: {
+        flex: 1,
+        backgroundColor: 'rgb(231, 43, 89)'
+    },
     navBar: {
         flexDirection: 'row',
         height: 60,
@@ -80,7 +84,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1
+        borderWidth: 1,
+        borderColor: 'white',
+        backgroundColor: 'rgb(64, 54, 102)',
+    },
+    navText: {
+        color: 'white'
     }
 });
 

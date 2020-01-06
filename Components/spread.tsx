@@ -16,7 +16,7 @@ class Spread extends React.Component<{}, { visible: boolean }> {
         this.animatedValue.addListener(({value}: any) => {
             this.value = value;
         });
-        let items = [1, 2, 3, 5, 4 ,5 , 7, 7, 8, 8];
+        let items = [1, 2, 3, 5, 4 ,5];
         let inputRange = [0, 50, 100];
         this.setInputRange(items, inputRange);
         this.valueMax = inputRange[inputRange.length - 1]
@@ -98,7 +98,7 @@ class Spread extends React.Component<{}, { visible: boolean }> {
         return (
             <SafeAreaView style={styles.container}>
                 <TouchableOpacity style={styles.button} onPress={() => this.flipCard()}>
-                    <Text>SPREAD!</Text>
+                    <Text style={styles.buttonText}>Toggle</Text>
                 </TouchableOpacity>
                 <Animated.View style={[styles.actionSheetContainer, actionSheetStyle]}>
                     <Animated.View style={[styles.listItem, baseAnimatedStyle]}>
@@ -132,7 +132,7 @@ class Spread extends React.Component<{}, { visible: boolean }> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'yellow',
+        backgroundColor: 'rgb(231, 43, 89)',
         alignItems: "center"
     },
     actionSheetContainer: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: "absolute",
-        backgroundColor: "grey",
+        backgroundColor: 'rgb(64, 54, 102)',
         bottom: 0,
     },
     flipText: {
@@ -157,8 +157,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     button: {
-        width: 100,
-        height: 200,
+        marginTop: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(64, 54, 102,0.5)',
+        padding: 15,
+        borderRadius: 10,
+        backgroundColor: 'rgb(64, 54, 102)'
+    },
+    buttonText: {
+        color: '#fff'
     }
 });
 

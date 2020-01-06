@@ -8,8 +8,8 @@ import {
     Text,
     TouchableHighlight,
     View
-} from "react-native";
-import * as React from "react";
+} from 'react-native';
+import * as React from 'react';
 
 class ParralaxModal extends React.Component<{}> {
 
@@ -32,22 +32,14 @@ class ParralaxModal extends React.Component<{}> {
     };
 
     render() {
-        const newDeviceWidth = deviceWidth;
         const actionSheetInterpolation = this.state.animation.interpolate({
             inputRange: [0, deviceWidth, deviceWidth * 2, deviceWidth * 3],
             outputRange: [deviceWidth * -3 - 150, (deviceWidth * -2) - 50, deviceWidth * -1 + 50, 100],
-            // extrapolate: 'clamp'
 
         });
         const actionSheetInterpolationSlow = this.state.animation.interpolate({
             inputRange: [0, deviceWidth, deviceWidth * 2, deviceWidth * 3],
             outputRange: [deviceWidth * -3 + 150, (deviceWidth * -2) - 50, (deviceWidth * -1) - 150, -350],
-            // extrapolate: 'clamp'
-        });
-
-        const scaleInterpolationBig = this.state.animation.interpolate({
-            inputRange: [0, deviceWidth, deviceWidth * 2, deviceWidth * 3],
-            outputRange: [2, 6, 10, 12]
         });
 
         const translateAnimation = {
@@ -59,14 +51,13 @@ class ParralaxModal extends React.Component<{}> {
         const translateAnimationSlow = {
             transform: [
                 {translateX: actionSheetInterpolationSlow},
-                // {scale: scaleInterpolationBig}
             ],
         };
 
         return (
-            <SafeAreaView style={{marginTop: 22}}>
+            <SafeAreaView style={{paddingTop: 22, backgroundColor: 'rgb(231, 43, 89)', flex: 1}}>
                 <Modal
-                    animationType="slide"
+                    animationType='slide'
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {
@@ -95,13 +86,14 @@ class ParralaxModal extends React.Component<{}> {
                                     </Animated.View>
                                     <Text style={styles.headerText}>Fourth View</Text>
 
-                                    <Animated.View useNativeDriver style={[styles.headerTextBig, translateAnimationSlow]}>
+                                    <Animated.View useNativeDriver
+                                                   style={[styles.headerTextBig, translateAnimationSlow]}>
                                         {/*<Text style={styles.headerText}>Fourth View</Text>*/}
                                         <TouchableHighlight
                                             onPress={() => {
                                                 this.setModalVisible(!this.state.modalVisible);
                                             }}>
-                                            <Text>Hide Modal</Text>
+                                            <Text style={{color: 'white'}}>Hide Modal</Text>
                                         </TouchableHighlight>
                                     </Animated.View>
                                 </View>
@@ -109,13 +101,15 @@ class ParralaxModal extends React.Component<{}> {
                         </View>
                     </SafeAreaView>
                 </Modal>
-
-                <TouchableHighlight
-                    onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight>
+                <View style={styles.buttonContainer}>
+                    <TouchableHighlight
+                        style={styles.button}
+                        onPress={() => {
+                            this.setModalVisible(true);
+                        }}>
+                        <Text style={styles.buttonText}>Show Modal</Text>
+                    </TouchableHighlight>
+                </View>
             </SafeAreaView>
         );
     }
@@ -125,63 +119,78 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: 'center',
+        backgroundColor: 'rgb(231, 43, 89)',
         alignItems: "center",
-        // backgroundColor: "#e5e5e5",
+    },
+    buttonContainer: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    button: {
+        borderWidth: 1,
+        borderColor: 'rgba(64, 54, 102,0.5)',
+        padding: 15,
+        borderRadius: 10,
+        backgroundColor: 'rgb(64, 54, 102)',
+    },
+    buttonText: {
+        color: '#fff'
     },
     headerText: {
         fontSize: 30,
-        textAlign: "center",
+        textAlign: 'center',
         margin: 10,
-        // color: 'white',
-        fontWeight: "bold"
+        color: 'white',
+        fontWeight: 'bold'
     },
     headerTextSmall: {
-        backgroundColor: 'tomato',
+        backgroundColor: 'rgb(64, 54, 102)',
         borderRadius: 100,
         fontSize: 30,
         width: 50,
         height: 50,
-        textAlign: "center",
+        textAlign: 'center',
         margin: 10,
         color: 'white',
-        fontWeight: "bold"
+        fontWeight: 'bold'
     },
     headerTextBig: {
-        backgroundColor: 'tomato',
+        backgroundColor: 'rgb(64, 54, 102)',
         borderRadius: 100,
         fontSize: 30,
         width: 200,
         height: 200,
-        textAlign: "center",
+        textAlign: 'center',
         margin: 10,
         color: 'white',
-        fontWeight: "bold"
+        fontWeight: 'bold'
     },
     firstView: {
         width: deviceWidth,
-        // backgroundColor: '#F44336',
+        backgroundColor: 'rgb(231, 43, 89)',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
     secondView: {
         width: deviceWidth,
-        // backgroundColor: '#9C27B0',
+        backgroundColor: 'rgb(231, 43, 89)',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
     thirdView: {
         width: deviceWidth,
-        // backgroundColor: '#3F51B5',
+        backgroundColor: 'rgb(231, 43, 89)',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
     },
     forthView: {
         width: deviceWidth,
-        // backgroundColor: '#009688',
+        backgroundColor: 'rgb(231, 43, 89)',
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'column'

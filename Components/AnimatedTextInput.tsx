@@ -137,16 +137,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: 'rgb(231, 43, 89)',
     },
     editor: {
-        borderWidth: 1,
+        backgroundColor: 'rgb(255, 255 ,255)',
         borderColor: 'rgba(0,0,0,0.1)'
     },
     toolbar: {
         alignItems: 'center',
         height: 50,
-        backgroundColor: '#2979ff',
+        backgroundColor: 'rgb(64, 54, 102)',
         flexDirection: 'row',
         paddingHorizontal: 10,
         justifyContent: 'flex-start'
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     input: {
         padding: 10,
         paddingTop: 15,
-        fontSize: 20
+        fontSize: 20,
     },
     buttonText: {
         flex: 1,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         position: 'absolute',
         width: 100,
-        backgroundColor: '#2979ff',
+        backgroundColor: 'rgb(64, 54, 102)',
         height: 50
     }
 });
